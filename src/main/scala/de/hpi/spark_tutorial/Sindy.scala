@@ -25,6 +25,7 @@ object Sindy {
       .toDF("value", "column_name")
     df.show(false)
 
+    // joining of attribute groups
     val attributeGroups = df.groupBy("value").agg(collect_set(col("column_name")).as("column_names"))
       .select("column_names")
       .distinct()
