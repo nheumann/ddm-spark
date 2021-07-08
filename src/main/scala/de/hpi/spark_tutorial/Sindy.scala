@@ -43,12 +43,12 @@ object Sindy {
       .as[(String,Seq[Seq[String]])]
       .map(c => (c._1,c._2.reduce(_.intersect(_))))
       .filter(c=> c._2.nonEmpty)
-      .toDF("lhs", "rhs")             
-      .sort("lhs")
+      .toDF("lhs", "rhs")
+      .orderBy(col("lhs"))
       .as[(String,Seq[String])]
 
     // print the inds
-    groupedIndCandidates.foreach(c => println(c._1 + " < " + c._2.reduce(_ + ", " + _)) )
+    groupedIndCandidates.collect().foreach(c => println(c._1 + " < " + c._2.reduce(_ + ", " + _)) )
   }
 
 }

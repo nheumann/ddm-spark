@@ -21,7 +21,7 @@ object SimpleSpark extends App {
     }
     val options = nextOption(Map(), args.toList)
 
-    val path = options.getOrElse('path, "data/TPCH")
+    val path = options.getOrElse('path, "./TPCH")
     val cores = options.getOrElse('cores, 32)
     val partitions = options.getOrElse('partitions, 64)
 
